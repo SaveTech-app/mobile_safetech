@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common/commons.dart';
+import '../../common/widgets/buttons/custom_button.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -55,7 +56,7 @@ class _SignInPageState extends State<SignInPage> {
                   //! Title
                   Text(
                     "Inicia Sesión",
-                    style: AppTextStyles.title,
+                    style: AppTextStyles.title(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.2,
@@ -78,7 +79,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                   //! Login In
-                  MyGreenButton(
+                  MyCustomButton(
                     label: "Ingresar",
                     onTap: () {
                       goToHomePage();

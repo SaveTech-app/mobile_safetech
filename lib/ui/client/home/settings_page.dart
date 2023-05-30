@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/commons.dart';
-import '../../../common/utils/utils.dart';
-import '../../../common/widgets/buttons/secundary_button.dart';
 
 class ClientSettingPage extends StatefulWidget {
   const ClientSettingPage({super.key});
@@ -37,34 +35,44 @@ class _ClientSettingPageState extends State<ClientSettingPage> {
                   ),
                   Text(
                     clientName,
-                    style: AppTextStyles.title,
+                    style: AppTextStyles.title(),
                   ),
                 ],
               ),
               MyPremiumButton(),
-              MyGreyButton(
+              MyCustomButton(
                 label: "Información personal",
                 onTap: () {},
+                textColor: AppColors.primaryColor,
+                buttonColor: AppColors.secundaryColor,
                 icon: Icons.pages,
               ),
-              MyGreyButton(
+              MyCustomButton(
                 label: "Cuenta",
                 onTap: () {},
+                textColor: AppColors.primaryColor,
+                buttonColor: AppColors.secundaryColor,
                 icon: Icons.account_circle_outlined,
               ),
-              MyGreyButton(
+              MyCustomButton(
                 label: "Método de pago",
                 onTap: () {},
+                textColor: AppColors.primaryColor,
+                buttonColor: AppColors.secundaryColor,
                 icon: Icons.credit_card,
               ),
-              MyGreyButton(
+              MyCustomButton(
                 label: "Cambiar contraseña",
                 onTap: () {},
+                textColor: AppColors.primaryColor,
+                buttonColor: AppColors.secundaryColor,
                 icon: Icons.password,
               ),
-              MyGreyButton(
+              MyCustomButton(
                 label: "Activar notificaciones",
                 onTap: () {},
+                textColor: AppColors.primaryColor,
+                buttonColor: AppColors.secundaryColor,
                 icon: Icons.notifications_none_outlined,
               ),
             ],

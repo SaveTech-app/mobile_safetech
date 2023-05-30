@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../common/commons.dart';
+import '../../domain/models/technical.dart';
+import '../../services/technical_services.dart';
 
 class TechnicalDetailPage extends StatefulWidget {
   final String technicalId;
@@ -21,78 +23,94 @@ class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
         body: Container(
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.05),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    padding: const EdgeInsets.only(top: 25),
-                    width: double.infinity,
-                    child: Container(
-                      decoration: AppStyles.greyWithGreen,
-                      child: Column(
-                        children: [
-                          Flexible(child: Container()),
-                          Flexible(
-                            child: Container(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Text("Jhony Roberto Coronel Manchego"),
-                                  Text("jhony@email.com"),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.topCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        Icon(Icons.heart_broken),
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage: NetworkImage(
-                            'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
-                          ),
-                        ),
-                        Icon(Icons.chat),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.15,
-                child: const MyContainerWithTitle(
-                  title: "Información",
-                  body:
-                      "Adipisicing laboris Lorem reprehenderit irure tempor aute.",
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.30,
-                child: const MyContainerWithTitle(
-                  title: "Experiencia laboral",
-                  body:
-                      "Proident qui ex non Lorem enim laborum quis Lorem esse excepteur cupidatat incididunt. Consequat veniam esse est dolor amet minim deserunt aute aute labore cupidatat. Dolor id eiusmod fugiat veniam amet consectetur aliqua.",
-                ),
-              ),
-              /*  MyGreenButton(
-                label: "check availability",
-                function: () {},
-              ), */
-            ],
+          child: FutureBuilder<Technical>(
+            future: TechnicalService().getTechnical(widget.technicalId),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              Technical technical = snapshot.data!;
+              return technicalProfile(context: context, technical: technical);
+            },
           ),
         ),
       ),
+    );
+  }
+
+  Column technicalProfile(
+      {required BuildContext context, required Technical technical}) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.25,
+              padding: const EdgeInsets.only(top: 25),
+              width: double.infinity,
+              child: Container(
+                decoration: AppStyles.greyWithGreen,
+                child: Column(
+                  children: [
+                    Flexible(child: Container()),
+                    Flexible(
+                      child: Container(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(technical.name),
+                            Text(technical.email),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.topCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.heart_broken),
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border:
+                          Border.all(color: AppColors.primaryColor, width: 2.0),
+                    ),
+                    child: CircleAvatar(
+                      radius: 75,
+                      backgroundImage: NetworkImage(
+                        technical.urlImage,
+                      ),
+                    ),
+                  ),
+                  Icon(Icons.chat),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.15,
+          child: MyContainerWithTitle(
+            title: "Información",
+            body: technical.information,
+          ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.30,
+          child: MyContainerWithTitle(
+            title: "Experiencia laboral",
+            body: technical.experience,
+          ),
+        ),
+        MyCustomButton(label: "Crear Cita", onTap: () {})
+      ],
     );
   }
 }

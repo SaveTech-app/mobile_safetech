@@ -46,12 +46,12 @@ class _SignUpPageState extends State<SignUpPage> {
         children: [
           Text(
             "¿Qué tipo de usuario eres?",
-            style: AppTextStyles.title,
+            style: AppTextStyles.title(),
             textAlign: TextAlign.center,
           ),
           Text(
             "Elige tu tipo de usuario para comenzar a utilizar la aplicación",
-            style: AppTextStyles.body,
+            style: AppTextStyles.body(),
             textAlign: TextAlign.center,
           ),
         ],

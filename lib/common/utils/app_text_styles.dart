@@ -1,21 +1,22 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 import 'app_color.dart';
 
 abstract class AppTextStyles {
-  static TextStyle title = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle body = TextStyle(
-    fontSize: 16,
-  );
+  static TextStyle title({Color? textColor}) => TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: textColor,
+      );
 
-  static TextStyle buttonText = TextStyle(
-    color: AppColors.myWhite,
-    fontWeight: FontWeight.bold,
-    fontSize: 16,
-  );
+  static TextStyle body({Color? textColor}) => TextStyle(
+        fontSize: 16,
+        color: textColor,
+      );
+
+  static TextStyle buttonText({Color? textColor}) => TextStyle(
+        color: textColor ?? AppColors.primaryColor,
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
+      );
 }

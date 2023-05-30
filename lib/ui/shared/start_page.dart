@@ -43,8 +43,9 @@ class _StartPageState extends State<StartPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MyGreenButton(
+                  MyCustomButton(
                     label: "Regístrate",
+                    buttonColor: AppColors.primaryColor,
                     onTap: () {
                       _goToSignPage(route: "/signUp");
                     },

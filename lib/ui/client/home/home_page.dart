@@ -40,19 +40,19 @@ class _ClientHomePageState extends State<ClientHomePage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          MyGreenButton(
+          MyCustomButton(
             label: "Appointment",
             onTap: () {
               goToPage(route: "/technicalList");
             },
           ),
-          MyGreenButton(
+          MyCustomButton(
             label: "Pending Appointment",
             onTap: () {
               goToPage(route: "/technicalList");
             },
           ),
-          MyGreenButton(
+          MyCustomButton(
             label: "Technicals",
             onTap: () {
               goToPage(route: "/technicalList");
@@ -78,7 +78,7 @@ class _ClientHomePageState extends State<ClientHomePage> {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               "Nutrition tip",
-              style: AppTextStyles.title,
+              style: AppTextStyles.title(),
             ),
           ),
           Container(

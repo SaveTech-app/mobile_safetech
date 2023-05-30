@@ -28,7 +28,7 @@ class MyContainerWithTitle extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: AppColors.terciaryColor,
+                color: AppColors.secundaryColor,
                 border: Border.all(
                   color: AppColors.primaryColor,
                   width: AppStyles.borderWidth,

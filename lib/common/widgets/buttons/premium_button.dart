@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../utils/utils.dart';
@@ -6,7 +8,7 @@ class MyPremiumButton extends StatelessWidget {
   const MyPremiumButton({super.key});
 
   goToPremiumPage() {
-    print("premiun");
+    log("premiun");
   }
 
   @override
@@ -19,7 +21,7 @@ class MyPremiumButton extends StatelessWidget {
           goToPremiumPage();
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.terciaryColor,
+          backgroundColor: AppColors.secundaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(22.5),
           ),
@@ -42,7 +44,7 @@ class MyPremiumButton extends StatelessWidget {
               flex: 2,
               child: Text(
                 "Convertirse en Premium",
-                style: AppTextStyles.buttonText,
+                style: AppTextStyles.buttonText(),
               ),
             ),
           ],

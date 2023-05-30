@@ -12,8 +12,7 @@ abstract class AppColors {
 
   //app colors
   static const Color primaryColor = _blue;
-  static const Color secundaryColor = _darkBlue;
-  static const Color terciaryColor = _grey;
+  static const Color secundaryColor = _grey;
 
   static const Color errorColor = _error;
   static const Color warningColor = _warning;

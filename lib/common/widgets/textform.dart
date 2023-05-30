@@ -44,7 +44,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
         focusedBorder: borderStyle(color: AppColors.primaryColor),
         border: borderStyle(color: AppColors.primaryColor),
         enabledBorder: borderStyle(color: AppColors.primaryColor),
-        disabledBorder: borderStyle(color: AppColors.terciaryColor),
+        disabledBorder: borderStyle(color: AppColors.secundaryColor),
         label: Text(
           widget.isRequired ? "${widget.label} *" : widget.label,
           textAlign: TextAlign.left,

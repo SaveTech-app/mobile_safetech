@@ -7,7 +7,7 @@ abstract class AppStyles {
   static double borderWidth = 2;
 
   static BoxDecoration greyWithGreen = BoxDecoration(
-    color: AppColors.terciaryColor,
+    color: AppColors.secundaryColor,
     border: Border.all(
       color: AppColors.primaryColor,
       width: borderWidth,

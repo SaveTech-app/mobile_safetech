@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:mobile_safetech/services/technical_services.dart';
+
 import '../../common/commons.dart';
+
+import '../../domain/models/technical.dart';
 
 class TechnicalListPage extends StatefulWidget {
   const TechnicalListPage({super.key});
@@ -10,7 +14,7 @@ class TechnicalListPage extends StatefulWidget {
 }
 
 class _TechnicalListPageState extends State<TechnicalListPage> {
-  _goToTechnicalDetail({technicalId}) {
+  _goToTechnicalDetail({required String technicalId}) {
     Navigator.pushNamed(context, "/technicalDetail", arguments: technicalId);
   }
 
@@ -30,42 +34,65 @@ class _TechnicalListPageState extends State<TechnicalListPage> {
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Text(
                   "Lista de técnicos",
-                  style: AppTextStyles.title,
+                  style: AppTextStyles.title(),
                 ),
               ),
-              ListView.separated(
-                separatorBuilder: (context, index) {
-                  return const SizedBox(height: 5);
-                },
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 7,
-                itemBuilder: (context, index) {
-                  return Container(
-                    decoration: AppStyles.greyWithGreen,
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: ListTile(
-                      leading: const CircleAvatar(
-                        radius: 20,
-                        backgroundImage: NetworkImage(
-                          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
-                        ),
-                      ),
-                      title: const Text("Mariana Cruz"),
-                      subtitle: const Text("35 años, 4/5"),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.remove_red_eye_rounded),
-                        onPressed: () {
-                          _goToTechnicalDetail(technicalId: "technicalId");
-                        },
-                      ),
-                    ),
-                  );
+              FutureBuilder<List<Technical>>(
+                future: TechnicalService().getAllTechnicals(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  List<Technical> technicals = snapshot.data!;
+                  return technicalItemList(technicals: technicals);
                 },
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget technicalItemList({required List<Technical> technicals}) {
+    if (technicals.isEmpty) {
+      return const Text("Hubo un error al obtener los técnicos");
+    }
+
+    return ListView.separated(
+      separatorBuilder: (context, index) => const SizedBox(
+        height: 15,
+      ),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: technicals.length,
+      itemBuilder: (context, index) {
+        Technical technical = technicals[index];
+
+        return technicalItemCard(technical);
+      },
+    );
+  }
+
+  Container technicalItemCard(Technical technical) {
+    return Container(
+      decoration: AppStyles.greyWithGreen,
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      width: double.infinity,
+      child: ListTile(
+        leading: CircleAvatar(
+          radius: 20,
+          backgroundImage: NetworkImage(
+            technical.urlImage,
+          ),
+        ),
+        title: Text(technical.name),
+        subtitle: Text("${technical.name} años, ${technical.name}/5"),
+        trailing: IconButton(
+          icon: const Icon(Icons.remove_red_eye_rounded),
+          onPressed: () {
+            _goToTechnicalDetail(technicalId: technical.id.toString());
+          },
         ),
       ),
     );

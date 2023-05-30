@@ -86,11 +86,11 @@ class _RegistryStep1PageState extends State<RegistryStep1Page> {
                   children: [
                     Text(
                       "Registremos tus datos",
-                      style: AppTextStyles.title,
+                      style: AppTextStyles.title(),
                     ),
                     Text(
                       "Para empezar, cuéntanos...",
-                      style: AppTextStyles.body,
+                      style: AppTextStyles.body(),
                     ),
                   ],
                 ),
@@ -166,7 +166,7 @@ class _RegistryStep1PageState extends State<RegistryStep1Page> {
                     ],
                   ),
                 ),
-                MyGreenButton(
+                MyCustomButton(
                   label: "Registrarse",
                   onTap: () {
                     _registry();
@@ -204,7 +204,7 @@ class _RegistryStep1PageState extends State<RegistryStep1Page> {
           alignment: Alignment.centerLeft,
           child: Text(
             "${birthdayDate.day}/${birthdayDate.month}/${birthdayDate.year}",
-            style: AppTextStyles.body,
+            style: AppTextStyles.body(),
           ),
         ),
       ),
