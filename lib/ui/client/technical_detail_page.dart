@@ -56,12 +56,18 @@ class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
                     Flexible(child: Container()),
                     Flexible(
                       child: Container(
-                        padding: const EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.only(top: 20),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(technical.name),
-                            Text(technical.email),
+                            Text(
+                              technical.name,
+                              style: AppTextStyles.body(),
+                            ),
+                            Text(
+                              technical.email,
+                              style: AppTextStyles.body(),
+                            ),
                           ],
                         ),
                       ),

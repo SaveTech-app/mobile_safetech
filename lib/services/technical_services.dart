@@ -4,8 +4,7 @@ import '../domain/models/technical.dart';
 
 class TechnicalService {
   final HttpHelper httpHelper;
-  static const String endpoint =
-      'technicals'; // Reemplaza con el endpoint correspondiente a los técnicos en tu API
+  static const String endpoint = 'technicals';
 
   TechnicalService() : httpHelper = HttpHelper();
 

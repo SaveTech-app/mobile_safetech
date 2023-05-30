@@ -41,19 +41,19 @@ class _ClientHomePageState extends State<ClientHomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MyCustomButton(
-            label: "Appointment",
+            label: "Crear reporte",
             onTap: () {
-              goToPage(route: "/technicalList");
+              goToPage(route: "/addReport");
             },
           ),
           MyCustomButton(
-            label: "Pending Appointment",
+            label: "Mis reportes",
             onTap: () {
-              goToPage(route: "/technicalList");
+              goToPage(route: "/myReports");
             },
           ),
           MyCustomButton(
-            label: "Technicals",
+            label: "Mis citas",
             onTap: () {
               goToPage(route: "/technicalList");
             },

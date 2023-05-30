@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final technical = technicalFromJson(jsonString);
-
 class Technical {
   final String id;
   final String name;

@@ -22,7 +22,12 @@ class MyContainerWithTitle extends StatelessWidget {
           SizedBox(
             height: 30,
             width: double.infinity,
-            child: Center(child: Text(title)),
+            child: Center(
+              child: Text(
+                title,
+                style: AppTextStyles.buttonText(textColor: AppColors.myWhite),
+              ),
+            ),
           ),
           Expanded(
             child: Container(
@@ -37,6 +42,7 @@ class MyContainerWithTitle extends StatelessWidget {
               child: Center(
                 child: Text(
                   body,
+                  style: AppTextStyles.body(),
                   textAlign: TextAlign.justify,
                 ),
               ),
