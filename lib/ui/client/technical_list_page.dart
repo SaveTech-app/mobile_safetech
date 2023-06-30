@@ -91,7 +91,7 @@ class _TechnicalListPageState extends State<TechnicalListPage> {
         trailing: IconButton(
           icon: const Icon(Icons.remove_red_eye_rounded),
           onPressed: () {
-            _goToTechnicalDetail(technicalId: technical.id.toString());
+            _goToTechnicalDetail(technicalId: technical.id);
           },
         ),
       ),

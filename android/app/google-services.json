@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "713558308519",
+    "project_id": "safe-tech-arq",
+    "storage_bucket": "safe-tech-arq.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713558308519:android:eb2697531740a930528d82",
+        "android_client_info": {
+          "package_name": "com.safetech.mobile_safetech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713558308519-p9jmteheqa3tgasb7c2f8g924vukarro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjkkVFuLtCwk77GpUmAJwMzRlqvAkrBns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713558308519-p9jmteheqa3tgasb7c2f8g924vukarro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

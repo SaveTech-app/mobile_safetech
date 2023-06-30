@@ -45,7 +45,9 @@ class _StartPageState extends State<StartPage> {
                 children: [
                   MyCustomButton(
                     label: "Regístrate",
-                    buttonColor: AppColors.primaryColor,
+                    buttonColor: AppColors.myWhite,
+                    textColor: AppColors.primaryColor,
+                    //icon: Icons.abc,
                     onTap: () {
                       _goToSignPage(route: "/signUp");
                     },

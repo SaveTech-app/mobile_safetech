@@ -109,7 +109,7 @@ class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.30,
+          height: MediaQuery.of(context).size.height * 0.20,
           child: MyContainerWithTitle(
             title: "Experiencia laboral",
             body: technical.experience,
