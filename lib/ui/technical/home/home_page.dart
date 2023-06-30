@@ -43,18 +43,6 @@ class _TechnicalHomePageState extends State<TechnicalHomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MyCustomButton(
-            label: "Crear reporte",
-            onTap: () {
-              goToPage(route: "/addReport");
-            },
-          ),
-          MyCustomButton(
-            label: "Mis reportes",
-            onTap: () {
-              goToPage(route: "/myReports");
-            },
-          ),
-          MyCustomButton(
             label: "Mis citas",
             onTap: () {
               goToPage(route: "/technicalList");
