@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_safetech/domain/models/electrical_appliance.dart';
-import 'package:mobile_safetech/services/electrical_appliance_services.dart';
 
 import 'package:mobile_safetech/services/report_services.dart';
 
 import '../../../common/commons.dart';
+import '../../../domain/models/electrical_appliance.dart';
 import '../../../domain/models/report.dart';
+import '../../../services/electrical_appliance_services.dart';
 
 class ReportListPage extends StatefulWidget {
   const ReportListPage({super.key});
@@ -43,7 +43,7 @@ class _ReportListPageState extends State<ReportListPage> {
                 ),
               ),
               FutureBuilder<List<Report>>(
-                future: ReportService().getAllReports(),
+                future: ReportService().getReports(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());
@@ -110,7 +110,7 @@ class _ReportListPageState extends State<ReportListPage> {
           ),
           child: FutureBuilder<ElectricalAppliance>(
             future: ElectricalApplianceService()
-                .getElectricalAppliance(report.electricalApplianceId),
+                .getApplianceById(report.electricalApplianceId),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());

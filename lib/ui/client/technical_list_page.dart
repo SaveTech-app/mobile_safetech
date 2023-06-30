@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 
 import 'package:mobile_safetech/services/technical_services.dart';
 
@@ -98,3 +98,4 @@ class _TechnicalListPageState extends State<TechnicalListPage> {
     );
   }
 }
+ */

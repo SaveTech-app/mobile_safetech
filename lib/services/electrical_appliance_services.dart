@@ -1,64 +1,65 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../domain/models/electrical_appliance.dart';
-import 'http_helper.dart';
 
 class ElectricalApplianceService {
-  final HttpHelper httpHelper;
-  static const String endpoint = 'electricalAppliances';
+  final CollectionReference _appliancesCollection =
+      FirebaseFirestore.instance.collection('electrical_appliances');
 
-  ElectricalApplianceService() : httpHelper = HttpHelper();
-
-  Future<ElectricalAppliance> createElectricalAppliance(
-      ElectricalAppliance electricalAppliance) async {
-    final json = electricalAppliance.toJson();
-
+  Future<List<ElectricalAppliance>> getAppliances() async {
     try {
-      final createdJson = await httpHelper.post(endpoint, json);
-      return ElectricalAppliance.fromJson(createdJson);
-    } catch (e) {
-      throw Exception('Error al crear el electrodomestico: $e');
+      final QuerySnapshot snapshot = await _appliancesCollection.get();
+      return snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String,
+            dynamic>; // Asegurar el tipo de datos como Map<String, dynamic>
+        return ElectricalAppliance.fromJson(data);
+      }).toList();
+    } catch (error) {
+      print("Error getting appliances: $error");
+      throw Exception("Failed to get appliances");
     }
   }
 
-  Future<List<ElectricalAppliance>> getAllElectricalAppliances() async {
+  Future<ElectricalAppliance> getApplianceById(String id) async {
     try {
-      final jsonList = await httpHelper.get(endpoint);
-      final List<dynamic> electricalAppliancesJson = jsonList as List<dynamic>;
-
-      return electricalAppliancesJson
-          .map((json) => ElectricalAppliance.fromJson(json))
-          .toList();
-    } catch (e) {
-      throw Exception('Error al obtener los electrodomesticos: $e');
+      final DocumentSnapshot applianceSnapshot =
+          await _appliancesCollection.doc(id).get();
+      if (applianceSnapshot.exists) {
+        final applianceData = applianceSnapshot.data() as Map<String, dynamic>;
+        return ElectricalAppliance.fromJson(applianceData);
+      } else {
+        throw Exception("Appliance not found");
+      }
+    } catch (error) {
+      print("Error getting appliance by ID: $error");
+      throw Exception("Failed to get appliance by ID");
     }
   }
 
-  Future<ElectricalAppliance> getElectricalAppliance(String id) async {
+  Future<void> addAppliance(ElectricalAppliance appliance) async {
     try {
-      final json = await httpHelper.get('$endpoint/$id');
-      return ElectricalAppliance.fromJson(json);
-    } catch (e) {
-      throw Exception('Error al obtener el electrodomestico: $e');
+      await _appliancesCollection.add(appliance.toJson());
+    } catch (error) {
+      print("Error adding appliance: $error");
+      throw Exception("Failed to add appliance");
     }
   }
 
-  Future<ElectricalAppliance> updateElectricalAppliance(
-      ElectricalAppliance electricalAppliance) async {
-    final json = electricalAppliance.toJson();
-
+  Future<void> updateAppliance(String id, ElectricalAppliance appliance) async {
     try {
-      final updatedJson =
-          await httpHelper.put('$endpoint/${electricalAppliance.id}', json);
-      return ElectricalAppliance.fromJson(updatedJson);
-    } catch (e) {
-      throw Exception('Error al actualizar el electrodomestico: $e');
+      await _appliancesCollection.doc(id).update(appliance.toJson());
+    } catch (error) {
+      print("Error updating appliance: $error");
+      throw Exception("Failed to update appliance");
     }
   }
 
-  Future<void> deleteElectricalAppliance(String id) async {
+  Future<void> deleteAppliance(String id) async {
     try {
-      await httpHelper.delete('$endpoint/$id');
-    } catch (e) {
-      throw Exception('Error al eliminar el electrodomestico: $e');
+      await _appliancesCollection.doc(id).delete();
+    } catch (error) {
+      print("Error deleting appliance: $error");
+      throw Exception("Failed to delete appliance");
     }
   }
 }

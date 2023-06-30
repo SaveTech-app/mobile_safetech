@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_safetech/services/client_services.dart';
 
 import '../../common/commons.dart';
 import '../../common/widgets/buttons/custom_button.dart';
@@ -21,12 +22,34 @@ class _SignInPageState extends State<SignInPage> {
     super.dispose();
   }
 
-  goToHomePage() {
+  @override
+  void initState() {
+    super.initState();
+    emailController.text = "admin@admin.com";
+    passwordController.text = "admin1";
+  }
+
+  _goToHomePage() {
     Navigator.pushNamedAndRemoveUntil(
       context,
       '/clientTabs',
       (Route<dynamic> route) => false,
     );
+  }
+
+  _signIn() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    try {
+      final client = await ClientServices().signInWithEmail(email, password);
+      // Inicio de sesión exitoso
+      print("Cliente inició sesión: ${client.id}");
+      _goToHomePage();
+    } catch (error) {
+      // Error durante el inicio de sesión
+      print("Error al iniciar sesión con correo electrónico: $error");
+    }
   }
 
   @override
@@ -82,7 +105,7 @@ class _SignInPageState extends State<SignInPage> {
                   MyCustomButton(
                     label: "Ingresar",
                     onTap: () {
-                      goToHomePage();
+                      _signIn();
                     },
                   ),
                 ],

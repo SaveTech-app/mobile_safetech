@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "713558308519-8muep8ipj6gb48d8mul0ep1th13p3kpi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.safetech.mobile_safetech",
+            "certificate_hash": "fc6a5d3c51ab37fd33ca979d949027a5fca641ee"
+          }
+        },
+        {
+          "client_id": "713558308519-vsui6p9a8f3jmfbg377s0mvn8tu85t9d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.safetech.mobile_safetech",
+            "certificate_hash": "d3859fbe7d7b3467c349293c8b4c799905c45a87"
+          }
+        },
+        {
           "client_id": "713558308519-p9jmteheqa3tgasb7c2f8g924vukarro.apps.googleusercontent.com",
           "client_type": 3
         }

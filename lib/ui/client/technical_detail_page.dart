@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 
 import '../../common/commons.dart';
 import '../../domain/models/technical.dart';
-import '../../services/technical_services.dart';
 
 class TechnicalDetailPage extends StatefulWidget {
   final String technicalId;
@@ -120,3 +119,4 @@ class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
     );
   }
 }
+ */

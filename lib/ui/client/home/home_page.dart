@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../../common/commons.dart';
@@ -36,7 +38,7 @@ class _ClientHomePageState extends State<ClientHomePage> {
   Widget buttons() {
     return SizedBox(
       width: double.infinity,
-      height: 160,
+      height: 250,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -64,47 +66,96 @@ class _ClientHomePageState extends State<ClientHomePage> {
   }
 
   Widget tip() {
-    String tip =
-        "Control the portion of your food using measuring guides such as your hands.";
-    String tipImage =
-        "https://s03.s3c.es/imag/_v0/770x420/1/9/8/490x_habitos-saludables.jpg";
+    List<Map<String, String>> tips = [
+      {
+        "title": "Lee el manual de instrucciones",
+        "subTitle":
+            "Familiarízate con las recomendaciones específicas de cada electrodoméstico"
+      },
+      {
+        "title": "Limpieza regular",
+        "subTitle":
+            "Mantén tus electrodomésticos limpios para un funcionamiento óptimo"
+      },
+      {
+        "title": "Desconexión cuando no estén en uso",
+        "subTitle":
+            "Evita el consumo innecesario de energía desconectando los electrodomésticos"
+      },
+      {
+        "title": "Cuidado con los cables",
+        "subTitle":
+            "Evita enredos y daños asegurándote de mantener los cables en buen estado"
+      },
+      {
+        "title": "No sobrecargues los enchufes",
+        "subTitle":
+            "Evita sobrecalentamientos y cortocircuitos al no conectar demasiados electrodomésticos en el mismo enchufe"
+      },
+      {
+        "title": "Ajusta la temperatura adecuada",
+        "subTitle":
+            "Configura la temperatura de acuerdo a las recomendaciones del fabricante y tus necesidades"
+      },
+      {
+        "title": "No golpees los electrodomésticos",
+        "subTitle":
+            "Evita golpes y maltratos que puedan afectar el funcionamiento de los electrodomésticos"
+      },
+      {
+        "title": "Utiliza utensilios adecuados",
+        "subTitle":
+            "Utiliza utensilios y accesorios específicos para cada electrodoméstico, evitando daños en las superficies"
+      },
+      {
+        "title": "Revisa y cambia los filtros",
+        "subTitle":
+            "Mantén los filtros limpios y reemplázalos según sea necesario"
+      },
+      {
+        "title": "Realiza un mantenimiento periódico",
+        "subTitle":
+            "Programa un mantenimiento regular para asegurar el buen funcionamiento de tus electrodomésticos"
+      }
+    ];
+
+    Random random = Random();
+    int randomIndex = random.nextInt(tips.length);
+
+    Map<String, String> randomTip = tips[randomIndex];
 
     return SizedBox(
       width: double.infinity,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Align(
+            alignment: Alignment.centerLeft,
             child: Text(
-              "Nutrition tip",
-              style: AppTextStyles.title(),
+              "Tip del día",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
           ),
-          Container(
-            width: double.infinity,
-            height: 150,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(11.0),
-              image: DecorationImage(
-                image: NetworkImage(tipImage),
-                fit: BoxFit.cover,
+          SizedBox(
+            height: 15,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                randomTip["title"]!,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Flexible(child: Container()),
-                  Flexible(
-                    child: Text(
-                      tip,
-                      textAlign: TextAlign.end,
-                    ),
-                  ),
-                ],
+              SizedBox(height: 8),
+              Text(
+                randomTip["subTitle"]!,
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),

@@ -1,9 +1,8 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:mobile_safetech/services/client_services.dart';
 
 import '../../common/commons.dart';
+import '../../domain/models/client.dart';
 
 class RegistryStep1Page extends StatefulWidget {
   final String userType;
@@ -39,7 +38,7 @@ class _RegistryStep1PageState extends State<RegistryStep1Page> {
     super.dispose();
   }
 
-  void _registry() {
+  Future<void> _registry() async {
     if (_formKey.currentState!.validate()) {
       final firstName = firstNameController.text.trim();
       final lastName = lastNameController.text.trim();
@@ -51,16 +50,29 @@ class _RegistryStep1PageState extends State<RegistryStep1Page> {
       final userType = widget.userType;
 
       //Navigator.of(context).pop();
-      final object = {
-        "firstName": firstName,
-        "lastName": lastName,
-        "phone": phone,
-        "email": email,
-        "password": password,
-        "userType": userType
-      };
+      final client = Client(
+        id: "",
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phone,
+        email: email,
+        password: password,
+      );
 
-      log(json.encode(object));
+      try {
+        final registeredClient =
+            await ClientServices().registerWithEmail(client);
+        // Cliente registrado exitosamente
+        print("Cliente registrado: ${registeredClient.id}");
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/clientTabs',
+          (Route<dynamic> route) => false,
+        );
+      } catch (error) {
+        // Error durante el registro del cliente
+        print("Error al registrar el cliente: $error");
+      }
     }
   }
 

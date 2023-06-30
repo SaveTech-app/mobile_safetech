@@ -24,7 +24,7 @@ class _ReportDetailPageState extends State<ReportDetailPage> {
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.05),
           child: FutureBuilder<Report>(
-            future: ReportService().getReport(widget.reportId),
+            future: ReportService().getReportByUid(widget.reportId),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());

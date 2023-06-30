@@ -1,62 +1,79 @@
-import 'dart:developer';
-
-import 'http_helper.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../domain/models/report.dart';
 
 class ReportService {
-  final HttpHelper httpHelper;
-  static const String endpoint = 'reports';
+  final CollectionReference reportsCollection =
+      FirebaseFirestore.instance.collection('reports');
 
-  ReportService() : httpHelper = HttpHelper();
-
-  Future<Report> createReport(Report report) async {
-    final json = report.toJson();
-
+  Future<void> addReport(Report report) async {
     try {
-      final createdJson = await httpHelper.post(endpoint, json);
-      return Report.fromJson(createdJson);
-    } catch (e) {
-      throw Exception('Error al crear el reporte: $e');
+      final DocumentReference docRef =
+          await reportsCollection.add(report.toJson());
+      final String reportId = docRef.id;
+
+      // Actualizar el objeto Report con el ID generado por Firebase
+      report = Report(
+        id: reportId,
+        clientId: report.clientId,
+        electricalApplianceId: report.electricalApplianceId,
+        title: report.title,
+        description: report.description,
+      );
+
+      // Actualizar el documento en Firebase con el ID incluido
+      await docRef.set(report.toJson());
+    } catch (error) {
+      print("Error adding report: $error");
+      throw Exception("Failed to add report");
     }
   }
 
-  Future<List<Report>> getAllReports() async {
+  Future<Report> getReportByUid(String reportId) async {
     try {
-      final jsonList = await httpHelper.get(endpoint);
-      final List<dynamic> reportsJson = jsonList as List<dynamic>;
-
-      return reportsJson.map((json) => Report.fromJson(json)).toList();
-    } catch (e) {
-      throw Exception('Error al obtener los reportes: $e');
+      final DocumentSnapshot snapshot =
+          await reportsCollection.doc(reportId).get();
+      if (snapshot.exists) {
+        final data = snapshot.data() as Map<String, dynamic>;
+        return Report.fromJson(data);
+      } else {
+        throw Exception("Report not found");
+      }
+    } catch (error) {
+      print("Error getting report by UID: $error");
+      throw Exception("Failed to get report by UID");
     }
   }
 
-  Future<Report> getReport(String id) async {
+  Future<List<Report>> getReports() async {
     try {
-      final json = await httpHelper.get('$endpoint/$id');
-      return Report.fromJson(json);
-    } catch (e) {
-      throw Exception('Error al obtener el reporte: $e');
+      final QuerySnapshot snapshot = await reportsCollection.get();
+      return snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String,
+            dynamic>; // Asegurar el tipo de datos como Map<String, dynamic>
+        return Report.fromJson(data);
+      }).toList();
+    } catch (error) {
+      print("Error getting reports: $error");
+      throw Exception("Failed to get reports");
     }
   }
 
-  Future<Report> updateReport(Report report) async {
-    final json = report.toJson();
-
+  Future<void> updateReport(Report report) async {
     try {
-      final updatedJson = await httpHelper.put('$endpoint/${report.id}', json);
-      return Report.fromJson(updatedJson);
-    } catch (e) {
-      throw Exception('Error al actualizar el reporte: $e');
+      await reportsCollection.doc(report.id).update(report.toJson());
+    } catch (error) {
+      print("Error updating report: $error");
+      throw Exception("Failed to update report");
     }
   }
 
-  Future<void> deleteReport(String id) async {
+  Future<void> deleteReport(String reportId) async {
     try {
-      await httpHelper.delete('$endpoint/$id');
-    } catch (e) {
-      throw Exception('Error al eliminar el reporte: $e');
+      await reportsCollection.doc(reportId).delete();
+    } catch (error) {
+      print("Error deleting report: $error");
+      throw Exception("Failed to delete report");
     }
   }
 }
