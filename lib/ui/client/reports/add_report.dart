@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_safetech/domain/models/report.dart';
-import 'package:mobile_safetech/services/electrical_appliance_services.dart';
+import 'package:mobile_safetech/domain/services/electrical_appliance_services.dart';
 
 import '../../../common/commons.dart';
 import '../../../domain/models/electrical_appliance.dart';
-import '../../../services/report_services.dart';
+import '../../../domain/services/report_services.dart';
 
 class AddReportPage extends StatefulWidget {
   const AddReportPage({super.key});

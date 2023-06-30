@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/services/client_services.dart';
+import '../../../domain/services/technical_services.dart';
 import '../../utils/utils.dart';
 
-class ClientAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const ClientAppBar({
+class TechnicalAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const TechnicalAppBar({
     Key? key,
   }) : super(key: key);
 
@@ -15,7 +15,7 @@ class ClientAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String clientName = ClientServices().getClientName();
+    final String clientName = TechnicalServices().getTechnicalName();
 
     return AppBar(
       backgroundColor: AppColors.myWhite,
@@ -25,13 +25,13 @@ class ClientAppBar extends StatelessWidget implements PreferredSizeWidget {
           style: const TextStyle(color: AppColors.myBlack),
         ),
         subtitle: Text(
-          "Client, $clientPlan Plan",
+          "Technical, $clientPlan Plan",
           style: const TextStyle(color: AppColors.myBlack),
         ),
       ),
       titleSpacing: -10,
       leading: const CircleAvatar(
-          backgroundImage: AssetImage(AppAssets.clientImagePath)),
+          backgroundImage: AssetImage(AppAssets.technicalImagePath)),
       actions: const <Widget>[
         Padding(
           padding: EdgeInsets.only(right: 10),

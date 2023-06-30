@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../domain/models/electrical_appliance.dart';
+import '../models/electrical_appliance.dart';
 
 class ElectricalApplianceService {
   final CollectionReference _appliancesCollection =

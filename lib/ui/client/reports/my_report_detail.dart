@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../common/commons.dart';
 import '../../../domain/models/report.dart';
-import '../../../services/report_services.dart';
+import '../../../domain/services/report_services.dart';
 
 class ReportDetailPage extends StatefulWidget {
   final String reportId;

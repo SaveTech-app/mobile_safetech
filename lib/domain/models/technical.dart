@@ -1,34 +1,38 @@
 class Technical {
   final String id;
-  final String name;
+  final String firstName;
+  final String lastName;
   final String email;
-  final String urlImage;
+  final String password;
   final String information;
   final String experience;
 
   Technical({
     required this.id,
-    required this.name,
+    required this.firstName,
+    required this.lastName,
     required this.email,
-    required this.urlImage,
+    required this.password,
     required this.information,
     required this.experience,
   });
 
   factory Technical.fromJson(Map<String, dynamic> json) => Technical(
         id: json["id"] ?? "id",
-        name: json["name"] ?? "name",
+        firstName: json["firstName"] ?? "firstName",
+        lastName: json["lastName"] ?? "lastName",
         email: json["email"] ?? "email",
-        urlImage: json["urlImage"] ?? "urlImage",
+        password: json["password"] ?? "password",
         information: json["information"] ?? "information",
         experience: json["experience"] ?? "experience",
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "name": name,
+        "firstName": firstName,
+        "lastName": lastName,
+        "password": password,
         "email": email,
-        "urlImage": urlImage,
         "information": information,
         "experience": experience,
       };

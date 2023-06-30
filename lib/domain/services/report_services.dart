@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../domain/models/report.dart';
+import '../models/report.dart';
 
 class ReportService {
   final CollectionReference reportsCollection =

@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 import '../../../common/commons.dart';
 
-class ClientHomePage extends StatefulWidget {
-  const ClientHomePage({super.key});
+class TechnicalHomePage extends StatefulWidget {
+  const TechnicalHomePage({super.key});
 
   @override
-  State<ClientHomePage> createState() => _ClientHomePageState();
+  State<TechnicalHomePage> createState() => _TechnicalHomePageState();
 }
 
-class _ClientHomePageState extends State<ClientHomePage> {
+class _TechnicalHomePageState extends State<TechnicalHomePage> {
   goToPage({route}) {
     Navigator.pushNamed(context, route);
   }
@@ -52,12 +52,6 @@ class _ClientHomePageState extends State<ClientHomePage> {
             label: "Mis reportes",
             onTap: () {
               goToPage(route: "/myReports");
-            },
-          ),
-          MyCustomButton(
-            label: "Crear citas",
-            onTap: () {
-              goToPage(route: "/technicalList");
             },
           ),
           MyCustomButton(

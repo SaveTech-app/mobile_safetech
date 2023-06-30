@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_safetech/domain/services/client_services.dart';
 
 import '../../../common/commons.dart';
+import '../../../domain/services/technical_services.dart';
 
-class ClientSettingPage extends StatefulWidget {
-  const ClientSettingPage({super.key});
+class TechnicalSettingPage extends StatefulWidget {
+  const TechnicalSettingPage({super.key});
 
   @override
-  State<ClientSettingPage> createState() => _ClientSettingPageState();
+  State<TechnicalSettingPage> createState() => _TechnicalSettingPageState();
 }
 
-class _ClientSettingPageState extends State<ClientSettingPage> {
+class _TechnicalSettingPageState extends State<TechnicalSettingPage> {
   _goToStartPage() {
     Navigator.pushNamedAndRemoveUntil(
       context,
@@ -21,9 +21,9 @@ class _ClientSettingPageState extends State<ClientSettingPage> {
 
   void _signOut() async {
     try {
-      await ClientServices().signOut();
+      await TechnicalServices().signOut();
       // Cierre de sesión exitoso
-      print("Cliente cerró sesión");
+      print("Technicale cerró sesión");
       _goToStartPage();
     } catch (error) {
       // Error durante el cierre de sesión
@@ -33,7 +33,7 @@ class _ClientSettingPageState extends State<ClientSettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final String clientName = ClientServices().getClientName();
+    final String clientName = TechnicalServices().getTechnicalName();
 
     return Scaffold(
       backgroundColor: AppColors.myWhite,
@@ -51,7 +51,7 @@ class _ClientSettingPageState extends State<ClientSettingPage> {
                     radius: 100,
                     child: CircleAvatar(
                       radius: 95,
-                      backgroundImage: AssetImage(AppAssets.clientImagePath),
+                      backgroundImage: AssetImage(AppAssets.technicalImagePath),
                     ),
                   ),
                   Text(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:mobile_safetech/services/report_services.dart';
+import 'package:mobile_safetech/domain/services/report_services.dart';
 
 import '../../../common/commons.dart';
 import '../../../domain/models/electrical_appliance.dart';
 import '../../../domain/models/report.dart';
-import '../../../services/electrical_appliance_services.dart';
+import '../../../domain/services/electrical_appliance_services.dart';
 
 class ReportListPage extends StatefulWidget {
   const ReportListPage({super.key});

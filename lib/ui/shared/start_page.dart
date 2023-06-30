@@ -49,7 +49,7 @@ class _StartPageState extends State<StartPage> {
                     textColor: AppColors.primaryColor,
                     //icon: Icons.abc,
                     onTap: () {
-                      _goToSignPage(route: "/signUp");
+                      _goToSignPage(route: "/registry");
                     },
                   ),
                   const Text(
