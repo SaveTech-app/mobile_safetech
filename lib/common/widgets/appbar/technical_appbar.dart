@@ -21,11 +21,11 @@ class TechnicalAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColors.myWhite,
       title: ListTile(
         title: Text(
-          "Hi, $clientName",
+          "Hola, $clientName",
           style: const TextStyle(color: AppColors.myBlack),
         ),
         subtitle: Text(
-          "Technical, $clientPlan Plan",
+          "Técnico, Pablito Plan",
           style: const TextStyle(color: AppColors.myBlack),
         ),
       ),

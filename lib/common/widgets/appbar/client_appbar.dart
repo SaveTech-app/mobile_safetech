@@ -21,11 +21,11 @@ class ClientAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColors.myWhite,
       title: ListTile(
         title: Text(
-          "Hi, $clientName",
+          "Hola, Juanito",
           style: const TextStyle(color: AppColors.myBlack),
         ),
         subtitle: Text(
-          "Client, $clientPlan Plan",
+          "Cliente, $clientPlan Plan",
           style: const TextStyle(color: AppColors.myBlack),
         ),
       ),
