@@ -12,7 +12,7 @@ import 'package:mobile_safetech/ui/client/reports/my_report_detail.dart';
 import 'package:mobile_safetech/ui/client/reports/my_reports.dart';
 import 'package:mobile_safetech/ui/client/tabs.dart';
 import 'package:mobile_safetech/ui/client/technical_detail_page.dart';
-import 'package:mobile_safetech/ui/client/chat/chat_list_page.dart';
+import 'package:mobile_safetech/ui/client/home/chat_list_page.dart';
 import 'package:mobile_safetech/ui/shared/registry_page.dart';
 import 'package:mobile_safetech/ui/shared/sign_in_page.dart';
 import 'package:mobile_safetech/ui/shared/start_page.dart';
@@ -72,7 +72,6 @@ class MyApp extends StatelessWidget {
               technicalId: ModalRoute.of(context)?.settings.arguments as String,
               reportId: ModalRoute.of(context)?.settings.arguments as String,
             ),
-        "/chatList": (context) => const ChatListPage(),
         // Citas
         '/myAppointments': (context) => const MyAppointmentsPage(),
         '/addAppointment': (context) => AddAppointmentPage(

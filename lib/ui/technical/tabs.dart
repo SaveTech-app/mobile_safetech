@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:mobile_safetech/ui/technical/home/chat_list_page.dart';
 
 import '../../common/commons.dart';
 
 import '../../common/widgets/appbar/technical_appbar.dart';
 import 'home/appointment_page.dart';
-import 'home/chat_page.dart';
 import 'home/home_page.dart';
 import 'home/settings_page.dart';
 
@@ -23,7 +23,7 @@ class _TechnicalTabsPageState extends State<TechnicalTabsPage> {
   final List<Widget> _tabs = [
     TechnicalHomePage(),
     TechnicalAppointmentPage(),
-    TechnicalChatPage(),
+    TechnicalChatList(),
     TechnicalSettingPage(),
   ];
 

@@ -262,7 +262,7 @@ class BurbujaMensaje extends StatelessWidget {
               children: [
                 Text(
                   messageChat.content,
-                  style: const TextStyle(color: Colors.white, fontSize: 20.0),
+                  style: const TextStyle(color: Colors.black, fontSize: 20.0),
                   textAlign: TextAlign.start,
                 ),
                 Text(
@@ -272,7 +272,7 @@ class BurbujaMensaje extends StatelessWidget {
                     ),
                   ),
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 15.0,
                     fontWeight: FontWeight.w300,
                   ),

@@ -2,21 +2,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_safetech/domain/services/client_services.dart';
 import 'package:mobile_safetech/domain/services/technical_services.dart';
-import 'package:mobile_safetech/ui/client/chat/chat_page.dart';
 
 import '../../../common/commons.dart';
 
 import '../../../domain/models/client.dart';
 import '../../../domain/models/technical.dart';
+import '../../shared/chat_page.dart';
 
-class ChatListPage extends StatefulWidget {
-  const ChatListPage({super.key});
+class ClientChatListPage extends StatefulWidget {
+  const ClientChatListPage({super.key});
 
   @override
-  State<ChatListPage> createState() => _ChatListPageState();
+  State<ClientChatListPage> createState() => _ClientChatListPageState();
 }
 
-class _ChatListPageState extends State<ChatListPage> {
+class _ClientChatListPageState extends State<ClientChatListPage> {
   String search = "";
 
   _goToChatPage(Technical technical, Client client) {

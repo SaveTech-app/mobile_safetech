@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mobile_safetech/ui/client/appointment/my_appointments.dart';
-import 'package:mobile_safetech/ui/client/chat/chat_list_page.dart';
+import 'package:mobile_safetech/ui/client/home/chat_list_page.dart';
 
 import '../../common/commons.dart';
 
@@ -22,7 +22,7 @@ class _ClientTabsPageState extends State<ClientTabsPage> {
   final List<Widget> _tabs = [
     ClientHomePage(),
     MyAppointmentsPage(),
-    ChatListPage(),
+    ClientChatListPage(),
     ClientSettingPage(),
   ];
 
