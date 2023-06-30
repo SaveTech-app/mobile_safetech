@@ -2,12 +2,17 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:mobile_safetech/firebase_options.dart';
+import 'package:mobile_safetech/ui/client/appointment/add_appointment.dart';
+import 'package:mobile_safetech/ui/client/appointment/my_appointment_detail.dart';
+import 'package:mobile_safetech/ui/client/appointment/my_appointments.dart';
 import 'package:mobile_safetech/ui/client/auth/client_registry_page.dart';
 import 'package:mobile_safetech/ui/client/auth/client_sign_in_page.dart';
 import 'package:mobile_safetech/ui/client/reports/add_report.dart';
 import 'package:mobile_safetech/ui/client/reports/my_report_detail.dart';
 import 'package:mobile_safetech/ui/client/reports/my_reports.dart';
 import 'package:mobile_safetech/ui/client/tabs.dart';
+import 'package:mobile_safetech/ui/client/technical_detail_page.dart';
+import 'package:mobile_safetech/ui/client/chat/chat_list_page.dart';
 import 'package:mobile_safetech/ui/shared/registry_page.dart';
 import 'package:mobile_safetech/ui/shared/sign_in_page.dart';
 import 'package:mobile_safetech/ui/shared/start_page.dart';
@@ -57,15 +62,26 @@ class MyApp extends StatelessWidget {
 
         //! Client Pages
         '/clientTabs': (context) => const ClientTabsPage(),
-        //Report
+        // Report
         '/myReports': (context) => const ReportListPage(),
         '/addReport': (context) => const AddReportPage(),
         '/reportDetail': (context) => ReportDetailPage(
             reportId: ModalRoute.of(context)?.settings.arguments as String),
-        //Tecnico
-        /* '/technicalDetail': (context) => TechnicalDetailPage(
-            technicalId: ModalRoute.of(context)?.settings.arguments as String),
-        "/technicalList": (context) => const TechnicalListPage() */
+        //
+        '/technicalDetail': (context) => TechnicalDetailPage(
+              technicalId: ModalRoute.of(context)?.settings.arguments as String,
+              reportId: ModalRoute.of(context)?.settings.arguments as String,
+            ),
+        "/chatList": (context) => const ChatListPage(),
+        // Citas
+        '/myAppointments': (context) => const MyAppointmentsPage(),
+        '/addAppointment': (context) => AddAppointmentPage(
+              technicalId: ModalRoute.of(context)?.settings.arguments as String,
+              reportId: ModalRoute.of(context)?.settings.arguments as String,
+            ),
+        '/appointmentDetail': (context) => AppointmentDetailPage(
+            appointmentId:
+                ModalRoute.of(context)?.settings.arguments as String),
 
         //! Technical Pages
         '/technicalTabs': (context) => const TechnicalTabsPage(),

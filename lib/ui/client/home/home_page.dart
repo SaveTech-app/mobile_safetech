@@ -38,7 +38,7 @@ class _ClientHomePageState extends State<ClientHomePage> {
   Widget buttons() {
     return SizedBox(
       width: double.infinity,
-      height: 250,
+      height: 120,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -52,18 +52,6 @@ class _ClientHomePageState extends State<ClientHomePage> {
             label: "Mis reportes",
             onTap: () {
               goToPage(route: "/myReports");
-            },
-          ),
-          MyCustomButton(
-            label: "Crear citas",
-            onTap: () {
-              goToPage(route: "/technicalList");
-            },
-          ),
-          MyCustomButton(
-            label: "Mis citas",
-            onTap: () {
-              goToPage(route: "/technicalList");
             },
           ),
         ],

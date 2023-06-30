@@ -1,18 +1,34 @@
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:mobile_safetech/domain/services/technical_services.dart';
+import 'package:mobile_safetech/ui/client/appointment/add_appointment.dart';
 
 import '../../common/commons.dart';
 import '../../domain/models/technical.dart';
 
 class TechnicalDetailPage extends StatefulWidget {
   final String technicalId;
+  final String reportId;
 
-  const TechnicalDetailPage({super.key, required this.technicalId});
+  const TechnicalDetailPage(
+      {super.key, required this.technicalId, required this.reportId});
 
   @override
   State<TechnicalDetailPage> createState() => _TechnicalDetailPageState();
 }
 
 class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
+  _goToAddAppointment() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddAppointmentPage(
+          technicalId: widget.technicalId,
+          reportId: widget.reportId,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,7 +39,7 @@ class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.05),
           child: FutureBuilder<Technical>(
-            future: TechnicalService().getTechnical(widget.technicalId),
+            future: TechnicalServices().getTechnicalById(widget.technicalId),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
@@ -60,7 +76,7 @@ class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              technical.name,
+                              technical.firstName,
                               style: AppTextStyles.body(),
                             ),
                             Text(
@@ -80,21 +96,21 @@ class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(Icons.heart_broken),
+                  const Icon(Icons.heart_broken),
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border:
                           Border.all(color: AppColors.primaryColor, width: 2.0),
                     ),
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       radius: 75,
-                      backgroundImage: NetworkImage(
-                        technical.urlImage,
+                      backgroundImage: AssetImage(
+                        AppAssets.technicalImagePath,
                       ),
                     ),
                   ),
-                  Icon(Icons.chat),
+                  const Icon(Icons.chat),
                 ],
               ),
             ),
@@ -114,9 +130,12 @@ class _TechnicalDetailPageState extends State<TechnicalDetailPage> {
             body: technical.experience,
           ),
         ),
-        MyCustomButton(label: "Crear Cita", onTap: () {})
+        MyCustomButton(
+            label: "Crear Cita",
+            onTap: () {
+              _goToAddAppointment();
+            })
       ],
     );
   }
 }
- */

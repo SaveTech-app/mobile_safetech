@@ -77,7 +77,7 @@ class TechnicalServices {
     return "Guess";
   }
 
-  Future<Technical?> getTechnicalById(String technicalId) async {
+  Future<Technical> getTechnicalById(String technicalId) async {
     try {
       final DocumentSnapshot technicalSnapshot =
           await _technicalsCollection.doc(technicalId).get();
@@ -86,11 +86,25 @@ class TechnicalServices {
         final technical = Technical.fromJson(technicalData);
         return technical;
       } else {
-        return null;
+        throw Exception("Technical not found");
       }
     } catch (error) {
       print("Error getting technical by ID: $error");
       throw Exception("Failed to get technical by ID");
+    }
+  }
+
+  Future<List<Technical>> getTechnicals() async {
+    try {
+      final QuerySnapshot snapshot = await _technicalsCollection.get();
+      return snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String,
+            dynamic>; // Asegurar el tipo de datos como Map<String, dynamic>
+        return Technical.fromJson(data);
+      }).toList();
+    } catch (error) {
+      print("Error getting reports: $error");
+      throw Exception("Failed to get reports");
     }
   }
 

@@ -78,7 +78,7 @@ class ClientServices {
     return "Guess";
   }
 
-  Future<Client?> getClientById(String clientId) async {
+  Future<Client> getClientById(String clientId) async {
     try {
       final DocumentSnapshot clientSnapshot =
           await _clientsCollection.doc(clientId).get();
@@ -87,11 +87,25 @@ class ClientServices {
         final client = Client.fromJson(clientData);
         return client;
       } else {
-        return null;
+        throw Exception("Client not found");
       }
     } catch (error) {
       print("Error getting client by ID: $error");
       throw Exception("Failed to get client by ID");
+    }
+  }
+
+  Future<List<Client>> getClients() async {
+    try {
+      final QuerySnapshot snapshot = await _clientsCollection.get();
+      return snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String,
+            dynamic>; // Asegurar el tipo de datos como Map<String, dynamic>
+        return Client.fromJson(data);
+      }).toList();
+    } catch (error) {
+      print("Error getting reports: $error");
+      throw Exception("Failed to get reports");
     }
   }
 

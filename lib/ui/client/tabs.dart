@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:mobile_safetech/ui/client/appointment/my_appointments.dart';
+import 'package:mobile_safetech/ui/client/chat/chat_list_page.dart';
 
 import '../../common/commons.dart';
 
-import 'home/appointment_page.dart';
-import 'home/chat_page.dart';
 import 'home/home_page.dart';
 import 'home/settings_page.dart';
 
@@ -21,8 +21,8 @@ class _ClientTabsPageState extends State<ClientTabsPage> {
 
   final List<Widget> _tabs = [
     ClientHomePage(),
-    ClientAppointmentPage(),
-    ClientChatPage(),
+    MyAppointmentsPage(),
+    ChatListPage(),
     ClientSettingPage(),
   ];
 
